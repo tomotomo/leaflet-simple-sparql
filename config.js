@@ -1,13 +1,12 @@
-var endpoint = "http://ja.dbpedia.org/sparql";
+var endpoint = "http://db.lodosaka.jp/sparql";
 var query = (function () {/*
-PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-select * where {
-?uri rdfs:label ?title;
-geo:lat ?lat;
-geo:long ?long.
+select distinct *
+where {
+?s <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://osakacity.lod/bridge/>;
+<http://www.w3.org/2000/01/rdf-schema#label> ?title;
+<http://www.w3.org/2003/01/geo/wgs84_pos#lat> ?lat;
+<http://www.w3.org/2003/01/geo/wgs84_pos#long> ?long.
 }
-limit 1000
 */}).toString().match(/\n([\s\S]*)\n/)[1];
 
 var maxZoom = 19;
